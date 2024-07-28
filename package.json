@@ -1,0 +1,48 @@
+{
+  "name": "require-sliced",
+  "version": "1.0.0",
+  "description": "merge a single module source from multiple files",
+  "main": "index.js",
+  "files": [
+    "/lib",
+    "/badges"
+  ],
+  "scripts": {
+    "test": "jest",
+    "test-ci": "jest --ci --coverage"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "lib/**/*.js"
+    ],
+    "coverageReporters": [
+      "clover",
+      "json",
+      "lcov",
+      "text",
+      "json-summary"
+    ],
+    "verbose": false,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/data",
+      "/__tests__/lib"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/do-/node-require-sliced.git"
+  },
+  "author": "Dmitry Ovsyanko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/do-/node-require-sliced/issues"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "homepage": "https://github.com/do-/node-require-sliced#readme",
+  "dependencies": {
+    "fs-iterators": "^1.0.0"
+  }
+}
