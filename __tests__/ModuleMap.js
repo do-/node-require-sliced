@@ -1,4 +1,5 @@
-const {ModuleMap, ObjectMerger} = require ('..')
+const {ModuleMap} = require ('..')
+const {ObjectMerger} = require ('subclassable-object-merger')
 const Path = require ('path')
 
 const r = () => ['root1', 'root2'].map (i => Path.join (__dirname, 'data', i))

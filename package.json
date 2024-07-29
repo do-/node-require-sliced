@@ -1,6 +1,6 @@
 {
   "name": "require-sliced",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "merge a single module source from multiple files",
   "main": "index.js",
   "files": [
@@ -43,6 +43,7 @@
   },
   "homepage": "https://github.com/do-/node-require-sliced#readme",
   "dependencies": {
-    "fs-iterators": "^1.0.0"
+    "fs-iterators": "^1.0.0",
+    "subclassable-object-merger": "^1.0.0"
   }
 }
