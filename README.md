@@ -3,11 +3,9 @@
 
 `require-sliced` is a node.js library implementing tools for working with [modules](https://nodejs.org/api/modules.html) whose source code may be partitioned across multiple eponymous files located in different directories.
 
-Consider a large application with the business logic implemented as a set of modules organized in topical directories, say `/crm`, `/hr` and so on. It may be convenient to have a common `users` module with some methods and properties defined in `/crm/users.js` and others in `/hr/users.js`. `require-sliced` lets developers do just that: it features the [ModuleMap](https://github.com/do-/node-require-sliced/wiki/ModuleMap) class designed to act as a registry of modules given as multiple partial source files in a limited set of directories.
+Consider a large application with the business logic implemented as a set of modules organized in topical directories, say `/crm`, `/hr` and so on. It may be convenient to have a common `users` module with some methods and properties defined in `/crm/users.js` and others in `/hr/users.js`. `require-sliced` lets developers do just that: it features the [ModuleMap](https://github.com/do-/node-require-sliced/wiki/ModuleMap) class designed to act as a registry of modules given as sets of partial source files to be assembled with [subclassable-object-merger](https://github.com/do-/node-subclassable-object-merger/wiki).
 
-In trivial cases, with all distinct property names, parts of a module are merged as with the standard [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). But names can occur more than once, and it seems very logical to, say, concatenate eponymous array valued properties. The [ObjectMerger](https://github.com/do-/node-require-sliced/wiki/ObjectMerger) implements basic rules here. It's totally subclassable and pluggable.
-
-Other than merging parts, [ModuleMap](https://github.com/do-/node-require-sliced/wiki/ModuleMap) tracks file modification times and can clean up the [require.cache](https://nodejs.org/api/modules.html#requirecache) to always yield the last version, which is handy for development environments, but can be turned off with the `watch` option to avoid the related performance overhead.
+[ModuleMap](https://github.com/do-/node-require-sliced/wiki/ModuleMap) tracks files' modification times and can clean up the [require.cache](https://nodejs.org/api/modules.html#requirecache) to always yield the last version, which is handy for development environments, but can be turned off with the `watch` option to avoid the related performance overhead.
 
 # Installation
 ```sh
