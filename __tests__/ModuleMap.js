@@ -1,4 +1,4 @@
-const {ModuleMap} = require ('..')
+const {ModuleMap} = require ('..'), {MODULE_NAME} = ModuleMap
 const {ObjectMerger} = require ('subclassable-object-merger')
 const Path = require ('path')
 
@@ -76,6 +76,7 @@ test ('get', () => {
 	const g = (k, ext) => new ModuleMap ({dir, ext}).get (k)
 	
 	expect (g ('tb_houses')).toStrictEqual ({
+		[MODULE_NAME]: 'tb_houses',
 		columns: {
 			root1_oltp: 1,
 			root1_crm_oltp: 1,
@@ -103,6 +104,7 @@ test ('load', () => {
 		expect ([...m.keys ()]).toStrictEqual (['tb_houses'])
 		
 		expect ([...m.values ()]).toStrictEqual ([{
+			[MODULE_NAME]: 'tb_houses',
 			columns: {
 				root1_oltp: 1,
 				root1_crm_oltp: 1,
@@ -122,6 +124,7 @@ test ('load complete', () => {
 	m.load ()
 
 	expect ([...m.values ()]).toStrictEqual ([{
+		[MODULE_NAME]: 'tb_houses',
 		columns: {
 			root1_oltp: 1,
 			root1_crm_oltp: 1,
@@ -135,6 +138,7 @@ test ('load complete', () => {
 	m.load ()
 
 	expect ([...m.values ()]).toStrictEqual ([{
+		[MODULE_NAME]: 'tb_houses',
 		name: 'tb_houses',
 		columns: {
 			root1_oltp: 1,
@@ -155,6 +159,7 @@ test ('get complete', () => {
 	const name = 'tb_houses'
 
 	expect (m.get (name)).toStrictEqual ({
+		[MODULE_NAME]: 'tb_houses',
 		name,
 		columns: {
 			root1_oltp: 1,
@@ -165,6 +170,7 @@ test ('get complete', () => {
 	})
 
 	expect (m.get (name)).toStrictEqual ({
+		[MODULE_NAME]: 'tb_houses',
 		name,
 		columns: {
 			root1_oltp: 1,
@@ -177,6 +183,7 @@ test ('get complete', () => {
 	m.loader.mtimes.clear ()
 
 	expect (m.get (name)).toStrictEqual ({
+		[MODULE_NAME]: 'tb_houses',
 		name,
 		columns: {
 			root1_oltp: 1,

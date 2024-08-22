@@ -1,6 +1,6 @@
 {
   "name": "require-sliced",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "merge a single module source from multiple files",
   "main": "index.js",
   "files": [
