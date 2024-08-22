@@ -1,8 +1,10 @@
 module.exports = {
 
-    select_users: async function () {
+    label: '',
+
+    select_users: function () {
     
-		return [{id: 1}]
+		  return [{id: 1}]
         
     },
 
@@ -20,7 +22,7 @@ module.exports = {
     	
     	if (isNaN (id)) throw Error ('Invalid id')
 
-		return {id}
+		  return {id}
 
     },
     

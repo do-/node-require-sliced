@@ -1,6 +1,7 @@
 const {ModuleMap} = require ('..'), {MODULE_NAME} = ModuleMap
 const {ObjectMerger} = require ('subclassable-object-merger')
 const Path = require ('path')
+const util = require ('util')
 
 const r = () => ['root1', 'root2'].map (i => Path.join (__dirname, 'data', i))
 
@@ -192,5 +193,24 @@ test ('get complete', () => {
 			root2_hr_oltp: 1
 		}
 	})
+
+})
+
+test ('getMethod', () => {
+
+	const m = new ModuleMap ({dir: {root: Path.join (__dirname, 'data', 'root3')}})
+
+	expect (() => m.getMethod ('userz', 'select_users')).toThrow (ModuleMap.ModuleNotFoundError)
+	expect (() => m.getMethod ('users', 'select_userz')).toThrow (ModuleMap.MethodNotFoundError)
+	expect (() => m.getMethod ('users', 'label')).toThrow (ModuleMap.NotAMethodError)
+
+	expect (m.getMethod ('users', 'select_users') ()).toStrictEqual ([{id: 1}])
+	expect (util.types.isAsyncFunction (m.getMethod ('users', 'do_wait_for_users'))).toBe (true)
+
+	for (const i of [1, 2]) {
+		const do_wait_for_users = m.getMethod ('users', 'do_wait_for_users')
+		expect (do_wait_for_users [ModuleMap.METHOD_NAME]).toBe ('do_wait_for_users')
+		expect (do_wait_for_users [ModuleMap.MODULE][ModuleMap.MODULE_NAME]).toBe ('users')
+	}
 
 })
