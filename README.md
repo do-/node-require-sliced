@@ -30,8 +30,12 @@ const codeRegistry = new ModuleMap ({
 codeRegistry.load () 
   // all at once: makes sense when watch === false
 
-const module = codeRegistry.get ('users') 
+const usersModule = codeRegistry.get ('users') 
   // merge from all `require ('/opt/myProject/**/API/users.js')`
 
-module.selectUsers () // for example
+usersModule.select () // for example
+
+// or just
+
+codeRegistry.getMethod ('users', 'select') ()
 ```
